@@ -719,10 +719,10 @@ int ConvFin<Tgpu, Tref>::MIOpenPerfEval()
 
                 res_item["params"]         = params;
                 res_item["time"]           = time;
-                res_item["layout"]         = problem.in_layout;
-                res_item["data_type"]      = problem.in_data_type;
+                res_item["layout"]         = problem.GetInLayout();
+                res_item["data_type"]      = problem.GetInDataType();
                 res_item["direction"]      = conv_dir;
-                res_item["bias"]           = problem.bias;
+                res_item["bias"]           = problem.GetBias();
                 res_item["kernel_objects"] = kern_objs;
                 res_item["reason"]         = "Success";
 
