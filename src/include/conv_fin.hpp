@@ -189,9 +189,12 @@ int ConvFin<Tgpu, Tref>::MIOpenPerfCompile()
         "Unable to perform MIOpenPerfCompile MIOpen was not compiled using HIPNOGPU backend");
 #endif
     const auto conv_dir = GetDirection();
-    const auto conv_problem = (conv_dir == miopen::conv::Direction::Forward) ?
-        miopen::conv::ProblemDescription(inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir) :
-        miopen::conv::ProblemDescription(outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
+    const auto conv_problem =
+        (conv_dir == miopen::conv::Direction::Forward)
+            ? miopen::conv::ProblemDescription(
+                  inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir)
+            : miopen::conv::ProblemDescription(
+                  outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
     const miopen::ProblemDescription problem(conv_problem);
     GetHandle().EnableProfiling(true);
     // cppcheck-suppress unreadVariable
@@ -321,9 +324,12 @@ int ConvFin<Tgpu, Tref>::MIOpenFindCompile()
         "Unable to perform MIOpenFindCompile MIOpen was not compiled using HIPNOGPU backend");
 #endif
     const auto conv_dir = GetDirection();
-    const auto conv_problem = (conv_dir == miopen::conv::Direction::Forward) ?
-        miopen::conv::ProblemDescription(inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir) :
-        miopen::conv::ProblemDescription(outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
+    const auto conv_problem =
+        (conv_dir == miopen::conv::Direction::Forward)
+            ? miopen::conv::ProblemDescription(
+                  inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir)
+            : miopen::conv::ProblemDescription(
+                  outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
     const miopen::ProblemDescription problem(conv_problem);
     GetHandle().EnableProfiling(true);
     // cppcheck-suppress unreadVariable
@@ -452,9 +458,12 @@ int ConvFin<Tgpu, Tref>::MIOpenPerfEval()
 #endif
     const auto conv_dir = GetDirection();
     // The first arg to the DataInvokeParams changes based on direction
-    const auto conv_problem = (conv_dir == miopen::conv::Direction::Forward) ?
-        miopen::conv::ProblemDescription(inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir) :
-        miopen::conv::ProblemDescription(outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
+    const auto conv_problem =
+        (conv_dir == miopen::conv::Direction::Forward)
+            ? miopen::conv::ProblemDescription(
+                  inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir)
+            : miopen::conv::ProblemDescription(
+                  outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
     const miopen::ProblemDescription problem(conv_problem);
     GetHandle().EnableProfiling(true);
     auto ctx = miopen::ConvolutionContext{};
@@ -733,9 +742,12 @@ int ConvFin<Tgpu, Tref>::MIOpenFindEval()
 #endif
     const auto conv_dir = GetDirection();
     // The first arg to the DataInvokeParams changes based on direction
-    const auto conv_problem = (conv_dir == miopen::conv::Direction::Forward) ?
-        miopen::conv::ProblemDescription(inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir) :
-        miopen::conv::ProblemDescription(outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
+    const auto conv_problem =
+        (conv_dir == miopen::conv::Direction::Forward)
+            ? miopen::conv::ProblemDescription(
+                  inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir)
+            : miopen::conv::ProblemDescription(
+                  outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
     const miopen::ProblemDescription problem(conv_problem);
     GetHandle().EnableProfiling(true);
     auto ctx = miopen::ConvolutionContext{};
@@ -964,9 +976,12 @@ int ConvFin<Tgpu, Tref>::MIOpenFind()
     const auto conv_dir = GetDirection();
     // assert(conv_dir == miopen::conv::Direction::Forward);
     // The first arg to the DataInvokeParams changes based on direction
-    const auto conv_problem = (conv_dir == miopen::conv::Direction::Forward) ?
-        miopen::conv::ProblemDescription(inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir) :
-        miopen::conv::ProblemDescription(outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
+    const auto conv_problem =
+        (conv_dir == miopen::conv::Direction::Forward)
+            ? miopen::conv::ProblemDescription(
+                  inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir)
+            : miopen::conv::ProblemDescription(
+                  outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
     const miopen::ProblemDescription problem(conv_problem);
     GetHandle().EnableProfiling(true);
     auto ctx = miopen::ConvolutionContext{};
@@ -1150,9 +1165,12 @@ int ConvFin<Tgpu, Tref>::TestApplicability()
                              "to test applicability");
 #endif
     const auto conv_dir = GetDirection();
-    const auto conv_problem = (conv_dir == miopen::conv::Direction::Forward) ?
-        miopen::conv::ProblemDescription(inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir) :
-        miopen::conv::ProblemDescription(outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
+    const auto conv_problem =
+        (conv_dir == miopen::conv::Direction::Forward)
+            ? miopen::conv::ProblemDescription(
+                  inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir)
+            : miopen::conv::ProblemDescription(
+                  outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
     const miopen::ProblemDescription problem(conv_problem);
     // cppcheck-suppress unreadVariable
     auto ctx = miopen::ConvolutionContext{};
@@ -1496,9 +1514,12 @@ int ConvFin<Tgpu, Tref>::SearchPreCompiledKernels()
         // following methods are used to set the
         // problem description, directionm context etc.
         const auto conv_dir = GetDirection();
-        const auto conv_problem = (conv_dir == miopen::conv::Direction::Forward) ?
-            miopen::conv::ProblemDescription(inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir) :
-            miopen::conv::ProblemDescription(outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
+        const auto conv_problem =
+            (conv_dir == miopen::conv::Direction::Forward)
+                ? miopen::conv::ProblemDescription(
+                      inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir)
+                : miopen::conv::ProblemDescription(
+                      outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
         const miopen::ProblemDescription problem(conv_problem);
         auto ctx = miopen::ConvolutionContext{};
 
@@ -2011,9 +2032,12 @@ miopen::ProblemDescription ConvFin<Tgpu, Tref>::GetCmdConvProblem(json _command)
 
     // initialize problem
     const auto conv_dir = GetDirection();
-    const auto conv_problem = (conv_dir == miopen::conv::Direction::Forward) ?
-        miopen::conv::ProblemDescription(inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir) :
-        miopen::conv::ProblemDescription(outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
+    const auto conv_problem =
+        (conv_dir == miopen::conv::Direction::Forward)
+            ? miopen::conv::ProblemDescription(
+                  inputTensor.desc, weightTensor.desc, outputTensor.desc, convDesc, conv_dir)
+            : miopen::conv::ProblemDescription(
+                  outputTensor.desc, weightTensor.desc, inputTensor.desc, convDesc, conv_dir);
     miopen::ProblemDescription problem(conv_problem);
 
     return problem;
